@@ -43,10 +43,14 @@ unique_labels = ['I-JOB',
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
+file_path = 'model.pt'
 
+# Ensure the file exists
+if not os.path.exists(file_path):
+    st.error(f"File not found: {file_path}")
 TOKENIZER_PATH = "luzox/N_NER"
 # test_md = torch.load('model.pt', map_location=torch.device('cpu'))
-test_md = torch.load('./model.pt')
+test_md = torch.load(file_path)
 tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_PATH)
 
 def align_word_ids(text, flag):
