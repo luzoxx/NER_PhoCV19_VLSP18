@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
-
+import os
 class PhoBertModel(torch.nn.Module):
 
     def __init__(self):
