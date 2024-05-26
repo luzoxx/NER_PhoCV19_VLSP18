@@ -46,7 +46,7 @@ ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
 TOKENIZER_PATH = "luzox/N_NER"
 # test_md = torch.load('model.pt', map_location=torch.device('cpu'))
-test_md = torch.load('model.pt')
+test_md = torch.load('./model.pt')
 tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_PATH)
 
 def align_word_ids(text, flag):
