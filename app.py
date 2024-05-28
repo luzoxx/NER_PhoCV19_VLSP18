@@ -1,6 +1,7 @@
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
+from torch.hub import load_state_dict_from_url
 import os
 class PhoBertModel(torch.nn.Module):
 
@@ -43,14 +44,14 @@ unique_labels = ['I-JOB',
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-file_path = 'model.pt'
 
-# Ensure the file exists
-if not os.path.exists(file_path):
-    st.error(f"File not found: {file_path}")
+model_url = 'https://drive.google.com/uc?export=download&id=1sjrrRrVqbYh1NVsAFfsh5CBv5RMI0YlN'
+test_md = torch.hub.load_state_dict_from_url(model_url, progress=True)
+# model.eval()  # Set the model to evaluation mode
+
 TOKENIZER_PATH = "luzox/N_NER"
 # test_md = torch.load('model.pt', map_location=torch.device('cpu'))
-test_md = torch.load(file_path)
+# test_md = torch.load(file_path)
 tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_PATH)
 
 def align_word_ids(text, flag):
